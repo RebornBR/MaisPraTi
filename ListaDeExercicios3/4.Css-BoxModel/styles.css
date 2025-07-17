@@ -1,0 +1,30 @@
+body{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    font-weight:bold;
+    text-align: center;
+}
+
+header{
+    height: 33%;
+    background-color: aqua;
+}
+
+main{
+    height: 33%;
+    background-color: rgb(230, 255, 4);
+}
+footer{
+    height: 33%;
+    background-color: burlywood;
+}
+
+header, main, footer{
+    margin: 30px;
+    padding: 100px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
