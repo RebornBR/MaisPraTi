@@ -8,7 +8,26 @@
     <title>Document</title>
 </head>
 
+<script>
+  function toggleMenu() {
+    document.getElementById("menuOpt").classList.toggle("ativado");
+  }
+</script>
+
 <body>
+    <div class="hamburguer" onclick="toggleMenu()">☰</div>
+    <nav id="navMenu">
+        <ul id="menuOpt">
+            <li><a href="https://myanimelist.net/character/17/Naruto_Uzumaki" target="_blank">Naruto Uzumaki</a></li>
+            <li><a href="https://myanimelist.net/character/168487/Rimuru_Tempest" target="_blank">Rimuru Tempest</a></li>
+            <li><a href="https://myanimelist.net/character/117241/Asta" target="_blank">Asta</a></li>
+            <li><a href="https://myanimelist.net/character/1/Son_Goku" target="_blank">Son Goku</a></li>
+            <li><a href="https://myanimelist.net/character/111261/Bell_Cranel" target="_blank">Bell Cranel</a></li>
+            <li><a href="https://myanimelist.net/character/45665/Eren_Yeager" target="_blank">Eren Yeager</a></li>
+            <li><a href="https://myanimelist.net/character/65209/Ken_Kaneki" target="_blank">Ken Kaneki</a></li>
+            <li><a href="https://myanimelist.net/character/322/Seiya" target="_blank">Seiya de Pégaso</a></li>
+        </ul>
+    </nav>
     <div class="container">
         <div class="card-imagem">
             <img src="/ListaDeExercicios3/6.Grid-FlexBox/assets/Naruto.webp" alt="Imagem do naruto">
