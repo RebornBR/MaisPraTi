@@ -28,3 +28,17 @@ header, main, footer{
     border: 2px solid black;
     border-radius: 10px;
 }
+
+h2{
+    font-size: 24px;
+    text-decoration: underline;
+    color: red;
+}
+
+.destaque{
+    background-color: black;
+}
+
+#importante{
+    border-top: 2px solid black;
+}
