@@ -135,6 +135,14 @@ ul img{
     border-radius: 20px;
 }
 
+.rodape::before {
+  content: "💻 ";
+}
+
+.rodape::after {
+  content: " 👨‍💻";
+}
+
 @media (max-width: 800px) {
     body {
         background-image: url("assets/fundoTecnologiaVermelho2Mobile.jpg");
