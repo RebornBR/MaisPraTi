@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --fonteKronaOne: "Krona One", sans-serif;
+    --fonteProtestRiot: "Protest Riot", sans-serif;
+    --fonteMontSerrat: "Montserrat", sans-serif;
+    --corVermelha: red;
+    --corBranca: white;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    height: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-image: url('assets/fundoTecnologiaVermelho2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: center center;
+    color: white;
+    background-attachment: fixed;
+}
+
+.destaqueRed {
+    color: var(--corVermelha);
+    font-family: var(--fonteKronaOne);
+    font-weight: 600;
+}
+
+.destaqueBranco {
+    color: var(--corBranca);
+    font-family: var(--fonteKronaOne);
+    font-weight: 600;
+}
+
+.apresentar {
+    padding: 8% 19%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.apresentandoTexto {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-bottom: 10%;
+}
+
+.apresentandoTitulo {
+    font-family: var(--fonteKronaOne);
+    font-size: 1.75rem;
+}
+
+.apresentandoParagrafo {
+    font-family: var(--fonteMontSerrat);
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding: 2% 0 0 0%;
+}
+
+.contImgVideo {
+    width: 100%;
+}
+
+.divBtLink {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    padding: 3% 0 0 0%;
+}
+
+.cabecalho {
+    padding: 3% 0 0 3%;
+}
+
+.menuCabecalho {
+    display: flex;
+    flex-direction: row;
+    gap: 3%;
+}
+
+.opcoesCabecalho {
+    font-family: var(--fonteMontSerrat);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--corBranca);
+    text-decoration: none;
+}
+
+.opcoesCabecalho:hover {
+    color: var(--corVermelha);
+}
+
+.rodape {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    background-color: black;
+    bottom: 0;
+    width: 100%;
+    gap: 3px;
+    color: var(--corBranca);
+    font-family: var(--fonteKronaOne);
+    font-size: 1rem;
+    text-align: center;
+}
+.logos {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.logos:hover {
+  transform: scale(1.1);
+  border: 2px solid black;
+}
+
+ul img{
+    border-radius: 20px;
+}
+
+@media (max-width: 800px) {
+    body {
+        background-image: url("assets/fundoTecnologiaVermelho2Mobile.jpg");
+    }
+
+    .cabecalho {
+        padding: 10%;
+    }
+
+    .menuCabecalho {
+        justify-content: center;
+        gap: 10%;
+    }
+
+    .opcoesCabecalho {
+        font-size: 1.0rem;
+    }
+
+    .opcoesCabecalho:hover {
+        font-size: 1.0rem;
+    }
+
+    .apresentar {
+        flex-direction: column;
+        justify-content: center center;
+        padding: 10%;
+    }
+
+    .apresentandoTexto {
+        width: auto;
+    }
+
+    .apresentandoTitulo {
+        font-size: 1.086rem;
+        text-align: center;
+    }
+
+    .apresentandoParagrafo {
+        font-family: var(--fonteMontSerrat);
+        font-size: 0.89rem;
+        font-weight: 600;
+        padding: 3% 0 0 5%;
+    }
+
+    .apresentandoTitulo:hover {
+        font-size: 1.086rem;
+    }
+
+    .rodape {
+        position: fixed;
+        background-color: black;
+        justify-content: center;
+        font-size: 0.6rem;
+    }
+
+    .divBtLink {
+        padding: 5% 0 0 0%;
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 415px) {
+    .opcoesCabecalho {
+        font-size: 0.868rem;
+    }
+
+    .opcoesCabecalho:hover {
+        font-size: 0.868rem;
+    }
+}
