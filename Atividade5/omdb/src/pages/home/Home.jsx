@@ -6,6 +6,7 @@ import './home.css';
 
 function Home() {
     const [filmeInput, setFilmeInput] = useState("");
+    const [nomeFilmeBusca, setNomeFilmeBusca] = useState("");
     const [filmes, setFilmes] = useState([]);
     const [filmeDetalhes, setFilmeDetalhes] = useState(null);
     const [error, setError] = useState(null);
@@ -14,15 +15,12 @@ function Home() {
     const [pagina, setPagina] = useState(1);
     const [totalPaginas, setTotalPaginas] = useState(0);
 
+    const apiKey = "b12bcf6e";
 
-    const apiKey = "b12bcf6e"
-
-    async function procurarFilmes(e) {
-        if (e?.preventDefault) e.preventDefault()
+    async function buscarFilmesPorNomePagina(nomeDofilme, paginaAtual) {
         setError(null);
-        const getSearch = `https://www.omdbapi.com/?apikey=${apiKey}&type=movie&s=${filmeInput}&page=${pagina}`;
-        console.log(getSearch);// depurar
         setLoading(true);
+        const getSearch = `https://www.omdbapi.com/?apikey=${apiKey}&type=movie&s=${nomeDofilme}&page=${paginaAtual}`;
         try {
             const response = await axios.get(getSearch);
             if (response.data.Search && Array.isArray(response.data.Search)) {
@@ -31,27 +29,26 @@ function Home() {
                 setFilmes(filmesOrdenados);
             } else {
                 setFilmes([]);
-                setError(`Nenhum filme com: ${filmeInput} foi encontrado.`);
+                setError(`Nenhum filme com: ${nomeDofilme} foi encontrado.`);
             }
-            setLoading(false);
         } catch (err) {
-            setError('Erro ao carregar filmes:');
+            setError('Erro ao carregar filmes.');
+        } finally {
             setLoading(false);
         }
     }
 
     useEffect(() => {
-        if (filmeInput.trim() !== '') {
-            procurarFilmes();
+        if (nomeFilmeBusca.trim() !== '') {
+            buscarFilmesPorNomePagina(nomeFilmeBusca, pagina);
         }
-    }, [pagina]);
+    }, [nomeFilmeBusca, pagina]);
 
-    useEffect(() => {
-        if (filmes.length > 0) {
-            console.log('Filmes atualizados:', filmes); // depurar
-        }
-    }, [filmes]);
-
+    function procurarFilmes(e) {
+        e.preventDefault();
+        setPagina(1);
+        setNomeFilmeBusca(filmeInput);
+    }
 
     function avancarPagina() {
         if (pagina < totalPaginas) {
@@ -65,7 +62,6 @@ function Home() {
         }
     }
 
-
     async function detalhesFilme(imdbID) {
         setError(null);
         const getDetalhes = `https://www.omdbapi.com/?apikey=${apiKey}&i=${imdbID}`;
@@ -77,7 +73,7 @@ function Home() {
                 setError('Detalhes do filme não encontrados.');
             }
         } catch (err) {
-            setError('Erro ao carregar detalhes do filme:');
+            setError('Erro ao carregar detalhes do filme.');
         }
     }
 
@@ -92,25 +88,29 @@ function Home() {
     return (
         <div className="container">
             <form className='pesquisa-filme' onSubmit={procurarFilmes}>
-                <input type="text"
+                <input
+                    type="text"
                     placeholder='Digite o nome do filme'
                     value={filmeInput}
-                    onChange={(e) => { setFilmeInput(e.target.value);}}
+                    onChange={(e) => setFilmeInput(e.target.value)}
                 />
                 <button type='submit' id='butao-pesquisa'>Buscar</button>
             </form>
+
             <FilmeCard
                 filmes={filmes}
                 loading={loading}
                 error={error}
                 clickModalDetalheFilme={clickModalFilmeDetalhe}
             />
+
             {modalAberto && filmeDetalhes && (
                 <ModalFilmeDetalhe
                     filmeDetalhe={filmeDetalhes}
                     onClose={() => setModalAberto(false)}
                 />
             )}
+
             <div className='paginacao'>
                 {pagina > 1 && (
                     <button onClick={voltarPagina}><span>&lt;</span></button>
@@ -119,10 +119,8 @@ function Home() {
                     <button onClick={avancarPagina}><span>&gt;</span></button>
                 )}
             </div>
-
         </div>
-    )
+    );
 }
-
 
 export default Home;
