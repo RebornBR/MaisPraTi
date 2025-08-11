@@ -1,0 +1,13 @@
+.modal-conteudo{
+    width: min(50%, 500px);
+    display: flex;
+    position: fixed;
+    top: 20px;
+    bottom: 20px;
+    flex-direction: column;
+    background-color: white;
+    padding: 50px;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 9999;
+}
