@@ -3,10 +3,10 @@ import './filmeCard.css'
 function FilmeCard({ filmes, error, loading, clickModalDetalheFilme }) {
     return (
         <div className='lista-filmes'>
-            <div className='mensagem'>
+            
                 {loading && <p>Carregando...</p>}
                 {error && <p style={{ color: 'red' }}>Erro: {error}</p>}
-            </div>
+
             {filmes.length > 0 && filmes.map((filme) => (
                 <div key={filme.imdbID} className='card'>
                     <button onClick={() => clickModalDetalheFilme(filme.imdbID)}>

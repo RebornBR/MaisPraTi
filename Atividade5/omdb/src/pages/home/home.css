@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,25 +12,15 @@
     align-items: center;
 }
 
-.container #butao-pesquisa {
-    width: 100%;
-    max-width:80px;
-    padding: 10px;
-    margin: 20px 0;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.container #butao-pesquisa:hover {
-    opacity: 0.9;
-}
-
 .pesquisa-filme {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     width: min(80%, 600px);
+    height: 120px;
     padding: 20px;
+    align-items: center;
+    margin-top: 0;
 }
 
 .pesquisa-filme input {
@@ -39,4 +29,41 @@
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.pesquisa-filme #butao-pesquisa {
+    width: 100%;
+    max-width: 80px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pesquisa-filme #butao-pesquisa:hover {
+    opacity: 0.9;
+}
+
+.paginacao {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.paginacao button {
+    font-size: 1.2rem;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.paginacao button:hover {
+    opacity: 0.9;
 }
