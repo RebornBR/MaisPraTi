@@ -9,7 +9,8 @@ function FilmeCard({ filmes, error, loading, clickModalDetalheFilme }) {
 
             {filmes.length > 0 && filmes.map((filme) => (
                 <div key={filme.imdbID} className='card'>
-                    <button onClick={() => clickModalDetalheFilme(filme.imdbID)}>
+                    <button class="icone-favorito">🤍</button>  
+                    <button onClick={() => clickModalDetalheFilme(filme.imdbID)}>  
                     <img
                         src={filme.Poster !== "N/A" ? filme.Poster : "https://via.placeholder.com/150"}
                         alt={filme.Title}

@@ -21,6 +21,7 @@
 }
 
 .card {
+    position: relative;
     width: 250px;
     height: 350px;
     overflow: hidden;
@@ -32,6 +33,27 @@
 .card:hover {
     transform: scale(1.02);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.icone-favorito {
+  appearance: none;
+  border: none;
+  position: absolute;
+  z-index: 10;
+  right: 10px;
+  bottom: 10px;
+  font-size: 24px;
+  backdrop-filter: blur(6px); 
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 6px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icone-favorito:hover {
+    transform: scale(1.2);
+    background-color: rgba(205, 0, 0, 0.8);
 }
 
 .card img {
