@@ -31,7 +31,13 @@
     border-radius: 4px;
 }
 
-.pesquisa-filme #butao-pesquisa {
+.botoes{
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+}
+
+.pesquisa-filme .botoes button {
     width: 100%;
     max-width: 80px;
     padding: 10px;
@@ -42,7 +48,7 @@
     cursor: pointer;
 }
 
-.pesquisa-filme #butao-pesquisa:hover {
+.pesquisa-filme .botoes button:hover {
     opacity: 0.9;
 }
 

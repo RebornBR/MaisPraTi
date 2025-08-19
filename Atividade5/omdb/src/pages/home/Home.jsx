@@ -8,6 +8,9 @@ function Home() {
     const [filmeInput, setFilmeInput] = useState("");
     const [nomeFilmeBusca, setNomeFilmeBusca] = useState("");
     const [filmes, setFilmes] = useState([]);
+    const [filmesFavoritos, setFilmesFavoritos] = useState([]);
+    const [filmeFavoritoRemovido, setFilmeFavoritoRemovido] = useState(false);
+    const [visualizacao, setVisualizacao] = useState('busca');
     const [filmeDetalhes, setFilmeDetalhes] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -39,14 +42,44 @@ function Home() {
     }
 
     useEffect(() => {
-        if (nomeFilmeBusca.trim() !== '') {
+        if (visualizacao === 'busca' && nomeFilmeBusca.trim() !== '') {
             buscarFilmesPorNomePagina(nomeFilmeBusca, pagina);
         }
-    }, [nomeFilmeBusca, pagina]);
+    }, [nomeFilmeBusca, pagina, visualizacao]);
+
+    useEffect(() => {
+        if (visualizacao === 'favoritos') {
+            if (filmesFavoritos.length > 0) {
+                setFilmes(filmesFavoritos);
+            } else {
+                setFilmes([]);
+                setError('Nenhum filme favorito encontrado.');
+            }
+        }
+    }, [visualizacao, filmesFavoritos]);
+
+    useEffect(() => {
+        const favoritosSalvos = localStorage.getItem('filmesFavoritos');
+        if (favoritosSalvos) {
+            setFilmesFavoritos(JSON.parse(favoritosSalvos));
+        }
+    }, []);
+
+    useEffect(() => {
+        if (filmeFavoritoRemovido && visualizacao === 'favoritos') {
+            setFilmes(filmesFavoritos);
+            setFilmeFavoritoRemovido(false);
+        }
+        if (error) {
+            const timer = setTimeout(() => setError(null), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [filmesFavoritos, visualizacao, error]);
 
     function procurarFilmes(e) {
         e.preventDefault();
         setPagina(1);
+        setVisualizacao("busca");
         setNomeFilmeBusca(filmeInput);
     }
 
@@ -85,6 +118,20 @@ function Home() {
         }
     }
 
+    async function adicionaFavorito(filme) {
+        const filmeExistente = filmesFavoritos.find(f => f.imdbID === filme.imdbID);
+        let novaLista;
+        if (filmeExistente) {
+            novaLista = filmesFavoritos.filter(f => f.imdbID !== filme.imdbID);
+            setError(`O filme ${filme.Title} foi removido dos favoritos.`);
+            setFilmeFavoritoRemovido(true);
+        } else {
+            novaLista = [...filmesFavoritos, filme];
+        }
+        setFilmesFavoritos(novaLista);
+        localStorage.setItem('filmesFavoritos', JSON.stringify(novaLista));
+    }
+
     return (
         <div className="container">
             <form className='pesquisa-filme' onSubmit={procurarFilmes}>
@@ -94,13 +141,21 @@ function Home() {
                     value={filmeInput}
                     onChange={(e) => setFilmeInput(e.target.value)}
                 />
-                <button type='submit' id='butao-pesquisa'>Buscar</button>
+                <div className='botoes'>
+                    <button type='submit' id='butao-pesquisa'>Buscar</button>
+                    <button type='button' onClick={() => {
+                        setPagina(1);
+                        setVisualizacao("favoritos");
+                    }}>Favoritos</button>
+                </div>
             </form>
 
             <FilmeCard
                 filmes={filmes}
+                filmesFavoritos={filmesFavoritos}
                 loading={loading}
                 error={error}
+                adicionaFavorito={adicionaFavorito}
                 clickModalDetalheFilme={clickModalFilmeDetalhe}
             />
 
@@ -111,14 +166,16 @@ function Home() {
                 />
             )}
 
-            <div className='paginacao'>
-                {pagina > 1 && (
-                    <button onClick={voltarPagina}><span>&lt;</span></button>
-                )}
-                {filmes.length > 0 && pagina < totalPaginas && (
-                    <button onClick={avancarPagina}><span>&gt;</span></button>
-                )}
-            </div>
+            {visualizacao === 'busca' && (
+                <div className='paginacao'>
+                    {pagina > 1 && (
+                        <button onClick={voltarPagina}><span>&lt;</span></button>
+                    )}
+                    {filmes.length > 0 && pagina < totalPaginas && (
+                        <button onClick={avancarPagina}><span>&gt;</span></button>
+                    )}
+                </div>
+            )}
         </div>
     );
 }
