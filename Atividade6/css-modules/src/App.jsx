@@ -4,6 +4,7 @@ import ProductCard from './components/ProductCard.jsx';
 import Skeleton from './components/Skeleton.jsx';
 import { products } from './data/products.js';
 import styles from './App.module.css'; 
+import './styles/global.css';
 
 const App = () => {
   const [tema, setTema] = useState(localStorage.getItem('tema') || 'light');

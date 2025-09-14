@@ -1,0 +1,25 @@
+:root {
+  --cor-fundo: #ffffff;
+  --cor-texto: #1a1a1a;
+  --cor-primaria: #0070f3;
+  --cor-borda: #eaeaea;
+  --sombra: rgba(0, 0, 0, 0.1);
+  --raio: 8px;
+  --transicao: all 200ms ease-in-out;
+}
+
+body.dark {
+  --cor-fundo: #1a1a1a;
+  --cor-texto: #ffffff;
+  --cor-primaria: #0ea5e9;
+  --cor-borda: #333333;
+  --sombra: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  transition: var(--transicao);
+}
