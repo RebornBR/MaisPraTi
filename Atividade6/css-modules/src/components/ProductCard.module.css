@@ -1,0 +1,36 @@
+
+.card {
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  box-shadow: 0 2px 4px var(--sombra);
+  padding: 16px;
+  transition: var(--transicao);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px var(--sombra);
+}
+.card:focus-visible {
+  outline: 2px solid var(--cor-primaria);
+}
+
+.imagemProduto {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #ccc;
+  object-fit: cover;
+  border-radius: var(--raio);
+}
+
+.titulo {
+  font-size: 1rem;
+  line-height: 1.2;
+  margin: 8px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

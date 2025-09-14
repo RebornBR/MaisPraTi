@@ -1,0 +1,6 @@
+.skeleton {
+  background-color: #ddd;
+  border-radius: var(--raio);
+  animation: shimmer 1.5s infinite linear;
+  height: 200px;
+}

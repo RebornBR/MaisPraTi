@@ -1,0 +1,22 @@
+import React from 'react';
+import Button from './Button';
+
+const ProductCard = ({ produto }) => {
+  return (
+    <div className="card" tabIndex={0} aria-label={`Produto: ${produto.title}`}>
+      <img
+        src={produto.image}
+        alt={produto.title}
+        className="imagem-produto"
+        loading="lazy"
+      />
+      <div className="titulo">{produto.title}</div>
+      <div>Preço: {produto.price}</div>
+      <div>★ {produto.rating}</div>
+      <div>{produto.tag}</div>
+      <Button variante="solid">Adicionar</Button>
+    </div>
+  );
+};
+
+export default ProductCard;
