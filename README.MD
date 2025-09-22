@@ -5,6 +5,4 @@ Este repositório tem como objetivo armazenar todos os exercícios propostos dur
 Para verificar e testar as soluções dos exercícios deste repositório, siga os passos abaixo:
 
 1. **Clone o repositório** 
-2. **Instale as dependências necessárias utilizando:** 
-```sh
-npm install
+2. **Acesse a pasta do exercicio em questao e siga o passo a passo para executar os codigos** 
